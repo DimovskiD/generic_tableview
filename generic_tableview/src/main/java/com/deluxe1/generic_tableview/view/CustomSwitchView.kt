@@ -3,10 +3,11 @@ package com.deluxe1.generic_tableview.view
 import android.content.Context
 import android.util.TypedValue
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.Switch
 import androidx.annotation.StringRes
+import com.deluxe1.generic_tableview.R
 import kotlin.math.roundToInt
 
 /**A switch that can be added in the [com.deluxe1.generic_tableview.GenericListElement]
@@ -24,7 +25,7 @@ class CustomSwitchView(private var switchStatus : Boolean) : GenericView() {
 
     override fun getView(context: Context, isHeader: Boolean): View =
         if (isHeader) CustomTextView(getTitle(context), "").getView(context, true)
-        else Switch(context).apply { isChecked = switchStatus }
+        else LayoutInflater.from(context).inflate(R.layout.custom_switch_no_text, null)
 
     override fun getLayoutParams(context: Context): LinearLayout.LayoutParams {
         val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.7f)

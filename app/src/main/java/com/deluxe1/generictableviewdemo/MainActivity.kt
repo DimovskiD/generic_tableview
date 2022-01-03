@@ -18,14 +18,24 @@ class MainActivity : AppCompatActivity(), OnRowActionsListener<PackagePlanItem>,
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         adapter = GenericListAdapter(3, true,
-            onRowActionsListener = this, onItemSelectedListener = this)
+            onRowActionsListener = this, onItemSelectedListener =  this, alternateColoring = false, actionTypeDetector = MyActionTypeDetector())
         binding.recycler.setAdapter(adapter)
     }
 
     override fun onResume() {
         super.onResume()
         adapter.setAdapterData(arrayListOf(PackagePlanItem("test", 2, 3f),
-            PackagePlanItem("test", 2, 3f),))
+            PackagePlanItem("test", 2, 3f),
+            PackagePlanItem("test", 2, 3f),
+            PackagePlanItem("test", 2, 3f),
+            PackagePlanItem("test", 2, 3f),
+            PackagePlanItem("test", 2, 3f),
+            PackagePlanItem("test", 2, 3f),
+            PackagePlanItem("test", 2, 3f),
+            PackagePlanItem("test", 2, 3f),
+        PackagePlanItem("test", 2, 3f),
+        PackagePlanItem("test", 2, 3f),
+        PackagePlanItem("test", 2, 3f)))
     }
 
     /**Invoked when an action was performed on a table row

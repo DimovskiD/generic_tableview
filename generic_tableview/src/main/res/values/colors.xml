@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="av_deep_orange">#f36e33</color>
+    <color name="transparent_darker">#22000000</color>
+    <color name="transparent_lighter">#22FFFFFF</color>
 </resources>
