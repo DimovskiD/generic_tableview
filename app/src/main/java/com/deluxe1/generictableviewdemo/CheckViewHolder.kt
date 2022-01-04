@@ -1,5 +1,6 @@
 package com.deluxe1.generictableviewdemo
 
+import android.content.res.ColorStateList
 import android.view.View
 import android.widget.ImageView
 import com.deluxe1.generic_tableview.GenericListElement
@@ -11,5 +12,6 @@ class CheckViewHolder<T: GenericListElement>(binding : GenericViewHolderBinding,
     GenericViewHolder<T>(binding, maxColumns) {
     override fun getView(element : T): View = ImageView(binding.container.context).apply {
         setImageResource(R.drawable.ic_baseline_check_24)
+        imageTintList = ColorStateList.valueOf(context.getColor(R.color.teal_500))
     }
 }

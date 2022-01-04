@@ -11,7 +11,7 @@ import com.deluxe1.generic_tableview.listener.*
 import com.deluxe1.generic_tableview.row_type.ActionTypeDetector
 import com.deluxe1.generic_tableview.viewholder.*
 
-class GenericPagedListAdapter<T : GenericListElement> (private val maxColumns : Int,
+class GenericPagedListAdapter<T : GenericListElement> (private val maxDataColumns : Int,
                                                        private val showHeader: Boolean,
                                                        private val onRowClickListener: OnRowClickListener<T>? = null,
                                                        private val onRowActionsListener : OnRowActionsListener<T>? = null,
@@ -38,7 +38,7 @@ class GenericPagedListAdapter<T : GenericListElement> (private val maxColumns : 
         actionTypeDetector.getActionTypeForInt(viewType).getViewHolder(
             GenericViewHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             onRowActionsListener,
-            maxColumns
+            maxDataColumns
         )
 
     override fun getItemViewType(position: Int): Int  = getItem(position)?.type?.getIntValue()?: -1
@@ -47,7 +47,7 @@ class GenericPagedListAdapter<T : GenericListElement> (private val maxColumns : 
         val element = getItem(position)!!
         holder.bindView(element, false, position, alternateColoring)
         if (position == 0 && showHeader)
-            onBindHeaderListener?.onHeaderBound(getItem(position)!!, getItemViewType(position), maxColumns)
+            onBindHeaderListener?.onHeaderBound(getItem(position)!!, getItemViewType(position), maxDataColumns)
         itemSelector?.onBindView(holder.binding.container,position, element, onRowClickListener, alternateColoring)
     }
 

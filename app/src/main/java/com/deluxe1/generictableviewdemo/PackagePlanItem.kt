@@ -12,5 +12,5 @@ data class PackagePlanItem (val title: String, val quantity: Int, val monthlyFee
         CustomTextView("Item", title, 2f) to true,
         CustomSwitchView("Quantity", true) to true,
         CustomBooleanView("Monthly Fee", value = false, true) to true
-    ), type =  MyActionType
+    ), type =  MyActionType, actionTextRes = R.string.click_me
 )

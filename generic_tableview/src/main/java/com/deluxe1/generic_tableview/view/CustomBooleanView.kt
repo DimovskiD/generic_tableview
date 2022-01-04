@@ -5,6 +5,7 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.CheckBox
 import android.widget.LinearLayout
 import androidx.annotation.StringRes
 import com.deluxe1.generic_tableview.R
@@ -25,7 +26,12 @@ class CustomBooleanView private constructor(private val value : Boolean, private
 
     override fun getView(context: Context, isHeader: Boolean): View =
         if (isHeader) CustomTextView(getTitle(context), "").getView(context, isHeader)
-        else LayoutInflater.from(context).inflate(R.layout.custom_checkbox_no_text, null)
+        else LayoutInflater.from(context).inflate(R.layout.custom_checkbox_no_text, null).apply {
+            findViewById<CheckBox>(R.id.checkBox).apply {
+                isEnabled = this@CustomBooleanView.isEnabled
+                isChecked = value
+            }
+        }
 
     override fun getLayoutParams(context: Context): LinearLayout.LayoutParams {
         val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.7f)

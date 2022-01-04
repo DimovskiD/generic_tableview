@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">GenericTableView Demo</string>
+    <string name="click_me">Click Me!</string>
+    <string name="remove">Remove</string>
+    <string name="id">ID</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="full_time">Full time?</string>
+    <string name="employee_list">Employee List</string>
+    <string name="remove_all">Remove selected</string>
 </resources>

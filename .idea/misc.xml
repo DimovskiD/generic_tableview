@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Sourcico/Desktop/GenericTableViewDemo/app/src/main/res/drawable/ic_baseline_check.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Sourcico/Desktop/GenericTableViewDemo/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Sourcico/Desktop/GenericTableViewDemo/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Sourcico/Desktop/GenericTableViewDemo/generic_tableview/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/Sourcico/Desktop/GenericTableViewDemo/generic_tableview/src/main/res/layout/custom_checkbox_no_text.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Sourcico/Desktop/GenericTableViewDemo/generic_tableview/src/main/res/layout/custom_switch_no_text.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Sourcico/Desktop/GenericTableViewDemo/generic_tableview/src/main/res/layout/generic_view_holder.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Sourcico/Desktop/GenericTableViewDemo/generic_tableview/src/main/res/layout/header_recyclerview.xml" value="0.36666666666666664" />
       </map>

@@ -1,6 +1,7 @@
 package com.deluxe1.generic_tableview.adapter
 
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.ColorRes
@@ -13,9 +14,9 @@ import com.deluxe1.generic_tableview.viewholder.*
 
 /**Binds list of elements that extend from [GenericListElement]. It should be possible to add only one type of extension,
  * to retain the visual organization.
- * @property maxColumns - defines the maximum number of columns a row can have
+ * @property maxDataColumns - defines the maximum number of columns a row can have
  * @property showHeader - if header view with the column titles should be shown*/
-class GenericListAdapter<T : GenericListElement>(private val maxColumns : Int, private val showHeader: Boolean,
+class GenericListAdapter<T : GenericListElement>(private val maxDataColumns : Int, private val showHeader: Boolean,
                                                  private val onRowClickListener: OnRowClickListener<T>? = null,
                                                  private val onRowActionsListener : OnRowActionsListener<T>? = null,
                                                  onItemSelectedListener: OnItemSelectedListener<T>? = null,
@@ -38,7 +39,7 @@ class GenericListAdapter<T : GenericListElement>(private val maxColumns : Int, p
         actionTypeDetector.getActionTypeForInt(viewType).getViewHolder(
             GenericViewHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             onRowActionsListener,
-            maxColumns
+            maxDataColumns
         )
 
     override fun getItemViewType(position: Int): Int = elements[position].type.getIntValue()
@@ -49,7 +50,7 @@ class GenericListAdapter<T : GenericListElement>(private val maxColumns : Int, p
             it.bindView(elements[position], false, position, alternateColoring = alternateColoring)
             itemSelector?.onBindView(holder.binding.container,position, elements[position], onRowClickListener, alternateColoring)
         }
-        if (position == 0 && showHeader) onBindHeaderListener?.onHeaderBound(elements[position], getItemViewType(position), maxColumns)
+        if (position == 0 && showHeader) onBindHeaderListener?.onHeaderBound(elements[position], getItemViewType(position), maxDataColumns)
 
     }
 
@@ -71,6 +72,17 @@ class GenericListAdapter<T : GenericListElement>(private val maxColumns : Int, p
         notifyItemChanged(position)
     }
 
+    fun removeItem(item : T) {
+        if (itemSelector?.selectedItems?.isEmpty() != false) {
+            val pos = elements.indexOf(item)
+            if (pos >= 0) {
+                elements.remove(item)
+                if (alternateColoring) notifyItemRangeChanged(pos, elements.size)
+                else notifyItemRemoved(pos)
+            }
+        }
+    }
+
     override fun clearSelection() : Boolean {
         val lst = itemSelector?.clearSelection()
         lst?.forEach{
@@ -85,6 +97,18 @@ class GenericListAdapter<T : GenericListElement>(private val maxColumns : Int, p
             lst.add(elements[it])
         }
         return lst
+    }
+
+    fun removeSelectedItems() {
+        itemSelector?.let {
+            val toRemove = arrayListOf<T>()
+            it.selectedItems.forEach { position ->
+                toRemove.add(elements[position])
+            }
+            elements.removeAll(toRemove)
+            notifyItemRangeChanged(it.selectedItems[0], elements.size)
+            it.clearSelection()
+        }
     }
 
 }

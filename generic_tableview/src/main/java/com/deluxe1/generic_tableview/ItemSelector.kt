@@ -62,6 +62,7 @@ class ItemSelector<T : GenericListElement>(private val onItemSelectedListener: O
             selectedItems.remove(position)
             if (selectedItems.isEmpty()) selectionMode = false
         }
+        selectedItems.sort()
         container.setBackgroundColor(getBackgroundColor(container.context, position, alternateColoring))
         onItemSelectedListener.onItemSelected(element, select, selectedItems.size)
     }
