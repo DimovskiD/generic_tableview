@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity(), OnRowClickListener<Employee>,
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         adapter = GenericListAdapter(
-            3,
-            true,
+            maxDataColumns = 3,
+            showHeader = true,
             onItemSelectedListener = this,
             onRowActionsListener = this,
             onRowClickListener = this,

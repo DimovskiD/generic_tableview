@@ -11,6 +11,16 @@ import com.deluxe1.generic_tableview.listener.*
 import com.deluxe1.generic_tableview.row_type.ActionTypeDetector
 import com.deluxe1.generic_tableview.viewholder.*
 
+/**Binds list of elements that extend from [GenericListElement]. It should be possible to add only one type of extension,
+ * to retain the visual organization. To be used with paging library.
+ * @property maxDataColumns - defines the maximum number of columns a row can have
+ * @property showHeader - if header view with the column titles should be shown
+ * @property onRowClickListener - if provided, the listener will be called when the row has been clicked. If not provided, nothing will happen on row click
+ * @property onRowActionsListener - if provided, the listener will be called when the row action has been clicked. If not provided, nothing will happen on row click
+ * @property alternateColoring - if true the rows will be colored alternatively, if false the rows will have same color
+ * @property actionTypeDetector - defaults to [ActionTypeDetector], provide your own implementation if using custom row types
+ * @param onItemSelectedListener - if provided the rows will be selectable and the listener will be called on every selection
+ * @param highlightColorResId - use to change the default highlight color*/
 class GenericPagedListAdapter<T : GenericListElement> (private val maxDataColumns : Int,
                                                        private val showHeader: Boolean,
                                                        private val onRowClickListener: OnRowClickListener<T>? = null,
