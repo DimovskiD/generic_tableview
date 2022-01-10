@@ -1,4 +1,4 @@
-package com.deluxe1.generictableviewdemo
+package com.deluxe1.generictableviewdemo.table_view_components
 
 import android.util.TypedValue
 import android.view.ContextThemeWrapper

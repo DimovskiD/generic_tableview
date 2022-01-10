@@ -10,15 +10,30 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.deluxe1.generic_tableview.R
 import kotlin.math.roundToInt
 
-class CustomImageTextView private constructor(private val value: String, private val weight: Float = 1f, @DrawableRes private val imageResource: Int) : GenericView(){
+class CustomImageTextView private constructor(
+    private val value: String,
+    private val weight: Float = 1f,
+    @DrawableRes private val imageResource: Int?,
+    private val imageUrl: String?,
+    private val circleCrop: Boolean
+) : GenericView() {
 
-    constructor(title: String, value: String, weight: Float = 1f, @DrawableRes imageResource: Int) : this(value, weight, imageResource) {
+    constructor(title: String, value: String, weight: Float = 1f, @DrawableRes imageResource: Int, circleCrop: Boolean = false) : this(value, weight, imageResource, null, circleCrop) {
         this.title = title
     }
 
-    constructor(@StringRes titleResId: Int, value: String, weight: Float = 1f, @DrawableRes imageResource: Int) : this(value, weight, imageResource) {
+    constructor(@StringRes titleResId: Int, value: String, weight: Float = 1f, @DrawableRes imageResource: Int, circleCrop: Boolean = false) : this(value, weight, imageResource, null, circleCrop) {
+        this.titleResId = titleResId
+    }
+
+    constructor(title: String, value: String, weight: Float = 1f, imageUrl : String, circleCrop: Boolean = false) : this(value, weight, null, imageUrl, circleCrop) {
+        this.title = title
+    }
+
+    constructor(@StringRes titleResId: Int, value: String, weight: Float = 1f, imageUrl : String, circleCrop: Boolean = false) : this(value, weight, null, imageUrl, circleCrop) {
         this.titleResId = titleResId
     }
 
@@ -26,11 +41,12 @@ class CustomImageTextView private constructor(private val value: String, private
     override fun getView(context: Context, isHeader: Boolean): View {
         if (isHeader) return CustomTextView(getTitle(context), value).getView(context, isHeader)
         val linearLayout = LinearLayout(context).apply { orientation = LinearLayout.HORIZONTAL }
-
         val imageView = ImageView(context)
-        Glide.with(context).load(imageResource).apply(RequestOptions().circleCrop()).into(imageView)
+        var requestBuilder = Glide.with(context).load(imageResource?:imageUrl)
+        if (circleCrop) requestBuilder = requestBuilder.circleCrop()
+        requestBuilder.into(imageView)
         linearLayout.addView(imageView, getImageViewParams(context, null))
-        linearLayout.addView(CustomTextView(getTitle(context), value).getView(context, isHeader), getImageViewParams(context, LinearLayout.LayoutParams.WRAP_CONTENT))
+        linearLayout.addView(CustomTextView(getTitle(context), value).getView(context, isHeader), LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply { gravity = Gravity.CENTER })
         return linearLayout
     }
 

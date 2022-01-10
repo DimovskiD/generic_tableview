@@ -1,16 +1,18 @@
 package com.deluxe1.generic_tableview.adapter
 
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.ColorRes
 import androidx.recyclerview.widget.RecyclerView
-import com.deluxe1.generic_tableview.*
+import com.deluxe1.generic_tableview.GenericListElement
+import com.deluxe1.generic_tableview.HeaderInstantiator
+import com.deluxe1.generic_tableview.ItemSelector
+import com.deluxe1.generic_tableview.R
 import com.deluxe1.generic_tableview.databinding.GenericViewHolderBinding
 import com.deluxe1.generic_tableview.listener.*
 import com.deluxe1.generic_tableview.row_type.ActionTypeDetector
-import com.deluxe1.generic_tableview.viewholder.*
+import com.deluxe1.generic_tableview.viewholder.GenericViewHolder
 
 /**Binds list of elements that extend from [GenericListElement]. It should be possible to add only one type of extension,
  * to retain the visual organization.

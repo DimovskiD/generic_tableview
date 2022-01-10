@@ -8,4 +8,9 @@
     <string name="full_time">Full time?</string>
     <string name="employee_list">Employee List</string>
     <string name="remove_all">Remove selected</string>
+    <string name="avatar">Avatar</string>
+    <string name="company">Company</string>
+    <string name="country">Country</string>
+    <string name="phone">phone</string>
+    <string name="clients_for">Clients for %1s</string>
 </resources>

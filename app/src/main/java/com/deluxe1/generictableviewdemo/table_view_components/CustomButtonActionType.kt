@@ -1,4 +1,4 @@
-package com.deluxe1.generictableviewdemo
+package com.deluxe1.generictableviewdemo.table_view_components
 
 import com.deluxe1.generic_tableview.ActionType
 import com.deluxe1.generic_tableview.GenericListElement
